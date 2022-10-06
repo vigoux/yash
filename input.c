@@ -327,6 +327,7 @@ struct promptset_T get_prompt(int type)
 	result.main = prompt;
 	result.right = expand_prompt_variable(num, L'R');
 	result.styler = expand_prompt_variable(num, L'S');
+	result.predict = expand_prompt_variable(num, L'P');
     }
 
     return result;

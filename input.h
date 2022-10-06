@@ -24,7 +24,7 @@
 
 
 struct promptset_T {
-    wchar_t *main, *right, *styler;
+    wchar_t *main, *right, *styler, *predict;
 };
 
 #define PROMPT_RESET L"\\fD"

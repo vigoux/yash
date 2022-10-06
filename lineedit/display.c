@@ -705,11 +705,16 @@ void update_editline(void)
 	    = lebuf.pos.line * lebuf.maxcolumn + lebuf.pos.column;
 	if (index == le_main_buffer.length)
 	    break;
-	if (styler_active && index >= le_main_length)
-	    lebuf_print_sgr0(), styler_active = false;
+	if (styler_active && index >= le_main_length) {
+	    lebuf_print_sgr0();
+	    lebuf_print_prompt(prompt.predict);
+	    styler_active = false;
+	}
 	lebuf_putwchar(c, true);
 	index++;
     }
+    lebuf_print_sgr0();
+
     current_length = le_main_length;
 
     fillip_cursor();
