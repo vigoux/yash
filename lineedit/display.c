@@ -18,6 +18,7 @@
 
 #include "../common.h"
 #include "display.h"
+#include "keymap.h"
 #include <assert.h>
 #if HAVE_GETTEXT
 # include <libintl.h>
@@ -520,6 +521,11 @@ void finish(void)
  * the buffer. */
 void le_display_flush(void)
 {
+    if (le_mode_to_id(le_current_mode) == LE_MODE_VI_COMMAND) {
+	fprintf(stderr, "[2 q");
+    } else {
+	fprintf(stderr, "[6 q");
+    }
     current_position = lebuf.pos;
     fwrite(lebuf.buf.contents, 1, lebuf.buf.length, stderr);
     fflush(stderr);
